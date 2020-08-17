@@ -4,6 +4,7 @@ import com.gidimobile.librarymanagement.models.ApplicationUser;
 import com.gidimobile.librarymanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoggedInUser {
     @Autowired
-    static UserRepository userRepository;
+    UserRepository userRepository;
 
 
     private LoggedInUser() {
@@ -19,12 +20,12 @@ public class LoggedInUser {
 
     public ApplicationUser getCurrentUser() {
 
-
-
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
         if (principal != null) {
 
             UserDetails userDetails = (UserDetails)principal;
+            System.out.println(userDetails.getUsername());
             ApplicationUser applicationUser = userRepository.findByUsername(userDetails.getUsername());
             return applicationUser;
         }
