@@ -1,5 +1,6 @@
 package com.gidimobile.librarymanagement.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,5 +27,6 @@ public class Book {
     Long price;
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(nullable=false,name="user_id")
+    @JsonIgnore
     ApplicationUser applicationUser;
 }

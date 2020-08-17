@@ -8,6 +8,7 @@ import com.gidimobile.librarymanagement.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 @Service
 public class BookServiceImpl implements BookService {
@@ -42,5 +43,11 @@ public class BookServiceImpl implements BookService {
         if(Objects.nonNull(deleteBook)){
             bookRepository.delete(deleteBook);
         }
+    }
+
+    //New
+    public List<Book> getAllBooks(){
+       List<Book> bookLists = bookRepository.findAll();
+       return bookLists;
     }
 }

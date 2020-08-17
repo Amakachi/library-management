@@ -1,5 +1,6 @@
 package com.gidimobile.librarymanagement.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,5 +17,6 @@ public class ApplicationUser {
     private String password;
     private String email;
     @OneToMany(mappedBy= "applicationUser", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @JsonIgnore
     List<Book> books;
 }

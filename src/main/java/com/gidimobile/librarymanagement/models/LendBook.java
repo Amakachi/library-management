@@ -1,5 +1,7 @@
 package com.gidimobile.librarymanagement.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 @Entity
@@ -10,9 +12,11 @@ public class LendBook {
     Long id;
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(nullable=false,name="user_id")
+    @JsonIgnore
     ApplicationUser receiver;
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(nullable=false,name="book_id")
+    @JsonIgnore
     Book book;
     Date dateCreated;
     Date dateReturned;

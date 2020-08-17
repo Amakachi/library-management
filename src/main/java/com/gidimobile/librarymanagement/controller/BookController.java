@@ -4,6 +4,8 @@ import com.gidimobile.librarymanagement.models.Book;
 import com.gidimobile.librarymanagement.services.BookService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/books")
 public class BookController {
@@ -22,5 +24,10 @@ public class BookController {
     public String addBook(@RequestBody Book book){
         bookService.addBook(book);
         return "Book added successfully";
+    }
+    @GetMapping("/list")
+    public List<Book> getAllBooks(){
+      return bookService.getAllBooks();
+
     }
 }
