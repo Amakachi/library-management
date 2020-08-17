@@ -1,13 +1,19 @@
 package com.gidimobile.librarymanagement.services.serviceImpl;
 
+import com.gidimobile.librarymanagement.models.ApplicationUser;
 import com.gidimobile.librarymanagement.models.Book;
 import com.gidimobile.librarymanagement.repository.BookRepository;
+import com.gidimobile.librarymanagement.security.LoggedInUser;
 import com.gidimobile.librarymanagement.services.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 @Service
 public class BookServiceImpl implements BookService {
+
+    @Autowired
+    LoggedInUser loggedInUser;
 
     private BookRepository bookRepository;
 
@@ -16,6 +22,7 @@ public class BookServiceImpl implements BookService {
     }
 
     public String addBook(Book book ){
+        book.setApplicationUser(loggedInUser.getCurrentUser());
         bookRepository.save(book);
         return "Book added successfuly";
     }

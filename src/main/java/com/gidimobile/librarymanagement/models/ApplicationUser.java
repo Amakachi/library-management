@@ -15,6 +15,6 @@ public class ApplicationUser {
     private String username;
     private String password;
     private String email;
-    @OneToMany(mappedBy="applicationUser", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy= "applicationUser", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     List<Book> books;
 }

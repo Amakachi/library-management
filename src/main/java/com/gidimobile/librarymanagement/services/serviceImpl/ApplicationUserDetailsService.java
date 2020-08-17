@@ -83,6 +83,10 @@ public class ApplicationUserDetailsService implements UserDetailsService {
         }
     }
 
+    public ApplicationUser loadApplicationUserByUsername(String username)  {
+        return userRepository.findByUsername(username);
+
+    }
 
     public List<ApplicationUser> fetchAllUsers(){
         List<ApplicationUser> listOfApplicationUsers = userRepository.findAll();
